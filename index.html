@@ -680,4 +680,63 @@
 
                 <div class="product-card">
                     <h3>👑 15 DÍAS</h3>
+                    <p>Dos semanas de poder total. Domina completamente el juego con soporte continuo.</p>
+                    <div class="price">$10.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 15 Días - $10.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>💜 30 DÍAS</h3>
+                    <p>Un mes completo de dominio total del juego. Acceso ilimitado + soporte 24/7 + bonus especiales.</p>
+                    <div class="price">$20.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 30 Días - $20.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" style="background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%); text-align: center; border-top: 2px solid #0066ff;">
+        <div class="container">
+            <h2 class="section-title">📞 ¿PREGUNTAS?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #00d4ff;">¡Contáctanos por WhatsApp y obtén soporte inmediato!</p>
+            <a href="https://wa.me/573227589092?text=Hola%20quiero%20más%20información%20sobre%20Drip%20Client" class="buy-btn" style="display: inline-block; width: auto; padding: 1rem 2rem;">
+                💬 ABRIR WHATSAPP
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">WhatsApp: +57 322 7589092</p>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/573227589092" class="whatsapp-float" title="Contactar por WhatsApp">
+        💬
+    </a>
+
+    <!-- Gamer Controls Flotantes -->
+    <div class="gamer-controls">
+        <button class="gamer-btn" title="Comprar Ahora" onclick="document.getElementById('productos').scrollIntoView({behavior: 'smooth'})">🛒</button>
+        <button class="gamer-btn" title="Características" onclick="document.querySelector('.features-list').scrollIntoView({behavior: 'smooth'})">⚡</button>
+        <button class="gamer-btn" title="Galería" onclick="document.getElementById('galeria').scrollIntoView({behavior: 'smooth'})">📸</button>
+        <button class="gamer-btn" title="Contacto" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">💬</button>
+    </div>
+
+    <script>
+        function enviarWhatsapp(producto) {
+            const numeroWhatsapp = '573227589092';
+            const mensaje = `Hola, estoy interesado en comprar: ${producto}`;
+            const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(enlace, '_blank');
+        }
+    </script>
+</body>
+</html>
     
