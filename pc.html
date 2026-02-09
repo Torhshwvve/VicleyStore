@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos PC - VicleyShop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000a0a 0%, #001a4d 50%, #0a2f7d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: #fff;
+            padding: 1.5rem 0;
+            box-shadow: 0 5px 30px rgba(0, 102, 255, 0.6);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        }
+
+        .home-link {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .home-link:hover {
+            opacity: 0.8;
+            text-shadow: 0 0 5px rgba(0, 212, 255, 0.8);
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        p {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.7);
+        }
+
+        footer {
+            background: rgba(0, 10, 38, 0.9);
+            color: #00d4ff;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 2px solid #0066ff;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .icon {
+                font-size: 5rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">⭐ VICLEYSHOP - PC ⭐</div>
+            <a href="index.html" class="home-link">🏠 Inicio</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="icon">💻</div>
+        <h1>Productos PC</h1>
+        <p>Próximamente disponible...</p>
+        <a href="index.html" class="back-btn">⬅️ Volver al Inicio</a>
+    </div>
+
+    <footer>
+        <p>© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

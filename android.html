@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Android - Drip Client</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000a0a;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: #fff;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 30px rgba(0, 102, 255, 0.6);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+            text-shadow: 0 0 5px rgba(0, 212, 255, 0.8);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
+            color: #00d4ff;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #0066ff;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            animation: glowText 2s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #00d4ff;
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        .payment-message {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #0066ff;
+            font-weight: bold;
+            background: rgba(0, 102, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066ff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #0066ff;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border: 2px solid #0066ff;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            border-color: #00d4ff;
+            background: linear-gradient(135deg, #0a2f7d 0%, #1a4a9d 100%);
+            animation: none;
+        }
+
+        .product-card h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .product-card p {
+            color: #66e6ff;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #00d4ff;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+            animation: priceGlow 1.5s ease-in-out infinite;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .buy-btn {
+            flex: 1;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4), 0 0 30px rgba(0, 102, 255, 0.2);
+            animation: gamerPulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .buy-btn:hover::before {
+            left: 100%;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.08) skewX(-2deg);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.6), 0 0 50px rgba(0, 102, 255, 0.4);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 40px;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.6);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 50px rgba(37, 211, 102, 0.8);
+        }
+
+        @keyframes glowText {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            }
+        }
+
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes titleShine {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        @keyframes priceGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 212, 255, 1);
+            }
+        }
+
+        @keyframes gamerPulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 102, 255, 0.4), 0 0 30px rgba(0, 102, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 212, 255, 0.6), 0 0 50px rgba(0, 102, 255, 0.4);
+            }
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(37, 211, 102, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        footer {
+            background: #000a26;
+            color: #00d4ff;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #0066ff;
+        }
+
+        .features-list {
+            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #0066ff;
+            margin: 2rem 0;
+            animation: featureShine 3s ease-in-out infinite;
+        }
+
+        .features-list h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .features-list ul {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #66e6ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:before {
+            content: "⚡ ";
+            color: #0066ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes featureShine {
+            0%, 100% {
+                border-color: #0066ff;
+            }
+            50% {
+                border-color: #00d4ff;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 30px;
+            }
+
+            .products, .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">⭐ DRIP CLIENT - ANDROID ⭐</div>
+            <ul>
+                <li><a href="index.html">🏠 Inicio</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#productos">Planes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🎮 DRIP CLIENT - APK MOD FREE FIRE 🎮</h1>
+            <p>Adquiere tus productos Drip Client y domina el Free Fire por completo</p>
+            <div class="payment-message">
+                ✅ Aceptamos TODO tipo de método de pago de cada país
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container">
+        <div class="features-list">
+            <h3>⚡ CARACTERÍSTICAS PRINCIPALES:</h3>
+            <ul>
+                <li>Silent Kill / Silent Aim</li>
+                <li>Magnetic Aim (Apuntado Magnético)</li>
+                <li>Tatu / AntiTatu</li>
+                <li>Ghost Hack</li>
+                <li>ESP Name / Line / Box</li>
+                <li>Speed Hack</li>
+                <li>100% ANTIBLACKLIST</li>
+                <li>Soporte Android Completo</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria">
+        <div class="container">
+            <h2 class="section-title">📸 GALERÍA</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Client Resultados">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260208-WA0027.jpg" alt="Drip Client Victorias">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Client APK MOD">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos">
+        <div class="container">
+            <h2 class="section-title">💎 PLANES Y PRECIOS</h2>
+            <div class="products">
+                <div class="product-card">
+                    <h3>⚡ 1 DÍA</h3>
+                    <p>Adquiere tu producto por 24 horas y domina el juego. ¡Soporte 24/7 incluido!</p>
+                    <div class="price">$3.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 1 Día - $3.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>🌟 7 DÍAS</h3>
+                    <p>Una semana completa dominando el juego con acceso total. Soporte prioritario 24/7.</p>
+                    <div class="price">$6.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 7 Días - $6.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>👑 15 DÍAS</h3>
+                    <p>Dos semanas de poder total. Domina completamente el juego con soporte continuo.</p>
+                    <div class="price">$10.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 15 Días - $10.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>💜 30 DÍAS</h3>
+                    <p>Un mes completo de dominio total del juego. Acceso ilimitado + soporte 24/7 + bonus especiales.</p>
+                    <div class="price">$20.00 USD</div>
+                    <div class="button-group">
+                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 30 Días - $20.00 USD')">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" style="background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%); text-align: center; border-top: 2px solid #0066ff;">
+        <div class="container">
+            <h2 class="section-title">📞 ¿PREGUNTAS?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #00d4ff;">¡Contáctanos por WhatsApp y obtén soporte inmediato!</p>
+            <a href="https://wa.me/573227589092?text=Hola%20quiero%20más%20información%20sobre%20Drip%20Client" class="buy-btn" style="display: inline-block; width: auto; padding: 1rem 2rem;">
+                💬 ABRIR WHATSAPP
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección Alexis Creaciones -->
+    <section style="background: linear-gradient(135deg, #0a2f7d 0%, #001a4d 100%); text-align: center; padding: 0.8rem 0.5rem; border-top: 1px solid #0066ff;">
+        <div class="container">
+            <p style="font-size: 0.75rem; margin-bottom: 0.3rem; color: #00d4ff;">
+                💻 CREACION DE PÁGINAS WEB + SOPORTE 24/7
+            </p>
+            <p style="font-size: 0.7rem; margin-bottom: 0.5rem; color: #66e6ff; font-weight: bold;">
+                ALEXIS CREACIONES
+            </p>
+            <button onclick="contactarAlexis()" class="buy-btn" style="display: inline-block; width: auto; padding: 0.4rem 1rem; font-size: 0.7rem;">
+                💬 CONTACTAR POR WHATSAPP
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">WhatsApp: +57 322 7589092</p>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/573227589092" class="whatsapp-float" title="Contactar por WhatsApp">
+        💬
+    </a>
+
+    <script>
+        function enviarWhatsapp(producto) {
+            const numeroWhatsapp = '573227589092';
+            const mensaje = `Hola, estoy interesado en comprar: ${producto}`;
+            const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(enlace, '_blank');
+        }
+
+        function contactarAlexis() {
+            const numeroWhatsapp = '5950985747341';
+            const mensaje = 'Hola, necesito información sobre creación de páginas web';
+            const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(enlace, '_blank');
+        }
+    </script>
+
+</body>
+</html>
