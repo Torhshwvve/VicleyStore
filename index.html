@@ -163,13 +163,19 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, rgba(45, 45, 45, 0.75) 0%, rgba(26, 26, 26, 0.85) 100%),
+                        url('dragon-logo.jpg') center center / cover no-repeat;
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             border-bottom: 4px solid #ffcc00;
             position: relative;
             overflow: hidden;
             animation: fadeIn 0.8s ease-out;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes fadeIn {
@@ -194,20 +200,28 @@
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             color: #ffcc00;
             position: relative;
             z-index: 1;
             animation: slideUp 0.8s ease-out 0.2s both;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 
+                         0 0 40px rgba(0, 0, 0, 0.7),
+                         2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #00ff00;
             position: relative;
             z-index: 1;
             animation: slideUp 0.8s ease-out 0.4s both;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 
+                         0 0 30px rgba(0, 0, 0, 0.7),
+                         2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
         }
 
         @keyframes slideUp {
