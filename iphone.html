@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos iPhone - VicleyShop</title>
+    <title>Productos iPhone - Modsljak</title>
     <style>
         * {
             margin: 0;
@@ -13,18 +13,66 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #000a0a 0%, #001a4d 50%, #0a2f7d 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.6;
             color: #fff;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+
+        /* Animación de cascada en los bordes */
+        .border-cascade {
+            position: fixed;
+            width: 5px;
+            height: 100%;
+            top: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .border-cascade.left {
+            left: 0;
+            background: linear-gradient(180deg, 
+                #ff3333 0%, 
+                #00ff00 25%, 
+                #ffcc00 50%, 
+                #ff3333 75%, 
+                #00ff00 100%);
+            background-size: 100% 400%;
+            animation: cascadeFlow 8s linear infinite;
+        }
+
+        .border-cascade.right {
+            right: 0;
+            background: linear-gradient(180deg, 
+                #ffcc00 0%, 
+                #ff3333 25%, 
+                #00ff00 50%, 
+                #ffcc00 75%, 
+                #ff3333 100%);
+            background-size: 100% 400%;
+            animation: cascadeFlow 8s linear infinite;
+        }
+
+        @keyframes cascadeFlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 400%; }
         }
 
         header {
-            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%);
             color: #fff;
-            padding: 1.5rem 0;
-            box-shadow: 0 5px 30px rgba(0, 102, 255, 0.6);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         nav {
@@ -34,133 +82,545 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 1.2rem;
+        .logo-text {
+            font-size: 1.1rem;
             font-weight: bold;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            letter-spacing: 1px;
         }
 
-        .home-link {
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
             color: #fff;
             text-decoration: none;
-            transition: opacity 0.3s;
             font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .home-link:hover {
-            opacity: 0.8;
-            text-shadow: 0 0 5px rgba(0, 212, 255, 0.8);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffcc00;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            color: #ffcc00;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #00ff00;
+        }
+
+        .payment-message {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            background: #333;
+            color: #00ff00;
+            font-weight: bold;
+            padding: 0.8rem;
+            border-radius: 25px;
+            border: 2px solid #00ff00;
+            display: inline-block;
         }
 
         .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, #333333 0%, #2d2d2d 100%);
+            margin: 2.5rem auto;
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            border: 3px solid #00ff00;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 0, 0.05), transparent);
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .product-header {
             text-align: center;
-            padding: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #ffcc00;
+            position: relative;
+            z-index: 1;
         }
 
-        .icon {
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            animation: float 3s ease-in-out infinite;
+        .product-title {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            margin-bottom: 0.5rem;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #00d4ff, #0066ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite;
+        .product-description {
+            color: #00ff00;
+            font-size: 1rem;
         }
 
-        p {
-            font-size: 1.3rem;
-            color: #00d4ff;
-            margin-bottom: 2rem;
+        .iphone-badge {
+            background: #2d2d2d;
+            border: 2px solid #ffcc00;
+            border-radius: 15px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            text-align: center;
         }
 
-        .back-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+        .iphone-badge p {
+            color: #ffcc00;
+            font-size: 0.9rem;
             font-weight: bold;
-            color: #fff;
-            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
-            text-decoration: none;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
-            transition: all 0.3s ease;
         }
 
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.7);
+        .promo-message {
+            background: #2d2d2d;
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            text-align: center;
+        }
+
+        .promo-message p {
+            color: #00ff00;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        .features-list {
+            background: #2d2d2d;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border: 2px solid #ffcc00;
+        }
+
+        .features-list h3 {
+            color: #ffcc00;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            color: #00ff00;
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .plan-card {
+            background: #2d2d2d;
+            border-radius: 20px;
+            border: 2px solid #00ff00;
+            padding: 1.5rem 1.2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: all 0.6s;
+        }
+
+        .plan-card:hover::before {
+            left: 100%;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 255, 0, 0.4);
+            border-color: #ffcc00;
+        }
+
+        .plan-card h3 {
+            font-size: 1.3rem;
+            color: #ffcc00;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-card p {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .certified-badge {
+            background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff00;
+            margin: 0.8rem 0;
+        }
+
+        .buy-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .buy-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.6);
+        }
+
+        .web-promo {
+            background: linear-gradient(135deg, #333333 0%, #2d2d2d 100%);
+            padding: 2rem;
+            border-radius: 25px;
+            text-align: center;
+            margin: 3rem auto;
+            border: 3px solid #ffcc00;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .web-promo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 204, 0, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+        }
+
+        .web-promo p {
+            color: #00ff00;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffcc00;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .web-btn {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            color: #000;
+            padding: 0.9rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .web-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.5);
         }
 
         footer {
-            background: rgba(0, 10, 38, 0.9);
-            color: #00d4ff;
+            background: #1a1a1a;
+            color: #00ff00;
             text-align: center;
-            padding: 1.5rem;
-            border-top: 2px solid #0066ff;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 4px solid #ff3333;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
-            }
-            50% {
-                text-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
-            }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 5px 35px rgba(37, 211, 102, 0.8); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            animation: none;
         }
 
         @media (max-width: 768px) {
-            .icon {
-                font-size: 5rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            p {
-                font-size: 1rem;
-            }
+            .hero h1 { font-size: 1.8rem; }
+            .product-title { font-size: 1.5rem; }
+            .plans-grid { grid-template-columns: 1fr; }
+            nav { flex-direction: column; gap: 1rem; }
+            .border-cascade { width: 3px; }
         }
     </style>
 </head>
 <body>
+    <!-- Bordes con cascada -->
+    <div class="border-cascade left"></div>
+    <div class="border-cascade right"></div>
+
     <header>
         <nav>
-            <div class="logo">⭐ VICLEYSHOP - iPHONE ⭐</div>
-            <a href="index.html" class="home-link">🏠 Inicio</a>
+            <div class="logo-text">⭐ MODSLJAK - iPHONE ⭐</div>
+            <ul>
+                <li><a href="index.html">🏠 Inicio</a></li>
+                <li><a href="android.html">📱 Android</a></li>
+                <li><a href="pc.html">💻 PC</a></li>
+                <li><a href="#contacto">📞 Contacto</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="container">
-        <div class="icon">🍎</div>
-        <h1>Productos iPhone</h1>
-        <p>Próximamente disponible...</p>
-        <a href="index.html" class="back-btn">⬅️ Volver al Inicio</a>
+    <div class="hero">
+        <div class="container">
+            <h1>🍎 PRODUCTOS iPHONE 🍎</h1>
+            <p>Soluciones exclusivas para dispositivos iOS</p>
+            <div class="payment-message">
+                💳 Aceptamos cualquier método de transferencia internacional
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
+    <!-- FLOURITE -->
+    <div class="container">
+        <div class="product-section">
+            <div class="product-header">
+                <h2 class="product-title">💎 FLOURITE SUPER FULL 💎</h2>
+                <p class="product-description">El mejor producto para cuentas principales en iPhone</p>
+                
+                <div class="iphone-badge">
+                    <p>🍎 EXCLUSIVO PARA iPHONE 🍎</p>
+                </div>
+
+                <div class="promo-message">
+                    <p>🔥 Adquiere el mejor panel del momento con soporte 24/7 🔥</p>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <h3>⭐ CARACTERÍSTICAS PREMIUM ⭐</h3>
+                <ul>
+                    <li>Super Full para el reinicio de temporada</li>
+                    <li>Meses sin caer - Máxima estabilidad</li>
+                    <li>El mejor producto para cuentas principales</li>
+                    <li>Actualmente sin ban ni blacklist</li>
+                    <li>Soporte técnico 24/7</li>
+                    <li>Actualizaciones constantes</li>
+                    <li>Certificación incluida</li>
+                </ul>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>🌟 1 SEMANA</h3>
+                    <p>7 días de acceso completo</p>
+                    <div class="certified-badge">✓ MÁS CERTIFICADO</div>
+                    <div class="price">$30.00</div>
+                    <button class="buy-btn" onclick="comprarProducto('Flourite iPhone', '1 Semana + Certificado', '30.00')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>👑 1 MES</h3>
+                    <p>30 días de dominio total</p>
+                    <div class="certified-badge">✓ MÁS CERTIFICADO</div>
+                    <div class="price">$50.00</div>
+                    <button class="buy-btn" onclick="comprarProducto('Flourite iPhone', '1 Mes + Certificado', '50.00')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promoción de páginas web -->
+    <div class="container">
+        <div class="web-promo">
+            <p>💻 Creación de páginas web profesionales</p>
+            <p class="company-name">ALEXIS CREACIONES</p>
+            <button onclick="contactarAlexis()" class="web-btn">
+                💬 CONTACTAR
+            </button>
+        </div>
+    </div>
+
+    <footer id="contacto">
+        <p style="font-size: 1.2rem; font-weight: bold;">📞 ¿Preguntas? ¡Contáctanos!</p>
+        <p style="margin-top: 0.5rem;">WhatsApp: +57 322 7589092</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">© 2026 Modsljak + Marihuano exe. Todos los derechos reservados.</p>
     </footer>
+
+    <a href="https://wa.me/573227589092?text=Hola,%20necesito%20información%20sobre%20productos%20iPhone" class="whatsapp-float" title="Contactar por WhatsApp">
+        💬
+    </a>
+
+    <script>
+        function comprarProducto(producto, duracion, precio) {
+            const numeroWhatsapp = '573227589092';
+            const mensaje = `Hola, quiero comprar:\n\nProducto: ${producto}\nDuración: ${duracion}\nPrecio: $${precio} USD\n\n¿Cómo procedo con el pago?`;
+            const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(enlace, '_blank');
+        }
+
+        function contactarAlexis() {
+            const numeroWhatsapp = '5950985747341';
+            const mensaje = 'Hola, necesito información sobre creación de páginas web';
+            const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(enlace, '_blank');
+        }
+    </script>
 </body>
 </html>
