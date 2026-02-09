@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Android - Drip Client</title>
+    <title>Productos Android - VicleyShop</title>
     <style>
         * {
             margin: 0;
@@ -15,17 +15,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #000a0a;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 20%, #0a2463 40%, #1e3a5f 60%, #2d1b69 80%, #1a0033 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding-bottom: 100px;
         }
 
         header {
-            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 25%, #0066ff 50%, #9d00ff 75%, #ff00ff 100%);
+            background-size: 200% 200%;
+            animation: headerGradient 8s ease infinite;
             color: #fff;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 5px 30px rgba(0, 102, 255, 0.6);
+            box-shadow: 0 5px 40px rgba(255, 0, 255, 0.6), 0 5px 40px rgba(0, 212, 255, 0.4);
         }
 
         nav {
@@ -34,20 +39,22 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 1.2rem;
+        .logo-text {
+            font-size: 1rem;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -55,6 +62,7 @@
             text-decoration: none;
             transition: opacity 0.3s;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         nav a:hover {
@@ -63,164 +71,221 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
+            background: linear-gradient(135deg, rgba(45, 27, 110, 0.9) 0%, rgba(10, 36, 99, 0.9) 50%, rgba(45, 27, 78, 0.9) 100%);
             color: #00d4ff;
-            padding: 3rem 2rem;
+            padding: 2rem 1rem;
             text-align: center;
-            border-bottom: 3px solid #0066ff;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #ff00ff, #00d4ff, #00ff88, #ffcc00) 1;
+            box-shadow: 0 5px 30px rgba(255, 0, 255, 0.4), 0 5px 30px rgba(0, 212, 255, 0.4);
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #00d4ff, #0066ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
             animation: glowText 2s ease-in-out infinite;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #00d4ff;
             animation: floatText 3s ease-in-out infinite;
         }
 
         .payment-message {
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-            color: #0066ff;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 212, 255, 0.2));
+            color: #00ff88;
             font-weight: bold;
-            background: rgba(0, 102, 255, 0.1);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            border-left: 4px solid #0066ff;
+            border: 2px solid;
+            border-image: linear-gradient(90deg, #ff00ff, #00d4ff, #00ff88) 1;
             animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
-        section {
-            padding: 3rem 2rem;
+        /* Product Section */
+        .product-section {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.9) 0%, rgba(10, 36, 99, 0.9) 50%, rgba(45, 27, 78, 0.9) 100%);
+            margin: 3rem auto;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00, #ff00ff) 1;
+            animation: borderRotate 6s linear infinite;
+            box-shadow: 0 10px 40px rgba(255, 0, 255, 0.3), 0 10px 40px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 255, 136, 0.2);
+            max-width: 1200px;
         }
 
-        .section-title {
+        .product-header {
             text-align: center;
-            font-size: 2.2rem;
             margin-bottom: 2rem;
-            color: #fff;
-            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(0, 102, 255, 0.3);
+        }
+
+        .product-title {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00, #ff00ff);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleShine 3s ease-in-out infinite;
+            margin-bottom: 0.8rem;
+            animation: rainbowShine 4s ease infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 212, 255, 0.4));
         }
 
+        .product-description {
+            color: #66e6ff;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Root Warning */
+        .root-warning {
+            background: rgba(255, 165, 0, 0.1);
+            border: 2px solid #ff9500;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .root-warning p {
+            color: #ffb84d;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .root-warning span {
+            color: #ff9500;
+            font-size: 1.2rem;
+        }
+
+        /* Gallery */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .gallery-item {
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 5px 30px rgba(255, 0, 255, 0.4), 0 5px 30px rgba(0, 212, 255, 0.4);
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid #0066ff;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88) 1;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+            transform: scale(1.08);
+            box-shadow: 0 15px 50px rgba(255, 0, 255, 0.7), 0 15px 50px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 255, 136, 0.5);
+            border-image: linear-gradient(135deg, #ffcc00, #ff00ff, #00d4ff) 1;
         }
 
         .gallery-item img {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
+            height: 280px;
+            object-fit: contain;
+            background: #000;
         }
 
-        .products {
+        /* Plans Grid */
+        .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .product-card {
-            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-            border: 2px solid #0066ff;
-            padding: 1.5rem;
+        .plan-card {
+            background: linear-gradient(135deg, rgba(45, 27, 110, 0.95) 0%, rgba(26, 74, 157, 0.95) 100%);
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(157, 0, 255, 0.4), 0 5px 30px rgba(0, 212, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88) 1;
+            padding: 1.8rem 1.5rem;
             display: flex;
             flex-direction: column;
             animation: cardFloat 3s ease-in-out infinite;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-            border-color: #00d4ff;
-            background: linear-gradient(135deg, #0a2f7d 0%, #1a4a9d 100%);
+        .plan-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.7), 0 20px 60px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 255, 136, 0.4);
+            border-image: linear-gradient(135deg, #ffcc00, #ff00ff, #00d4ff) 1;
+            background: linear-gradient(135deg, rgba(45, 90, 157, 0.95) 0%, rgba(42, 90, 189, 0.95) 100%);
             animation: none;
         }
 
-        .product-card h3 {
-            color: #00d4ff;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        .plan-card h3 {
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+            text-align: center;
         }
 
-        .product-card p {
+        .plan-card p {
             color: #66e6ff;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             flex-grow: 1;
+            text-align: center;
         }
 
         .price {
             font-size: 2rem;
-            color: #00d4ff;
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: bold;
             margin: 1rem 0;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
-            animation: priceGlow 1.5s ease-in-out infinite;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: auto;
-            width: 100%;
+            animation: priceRainbow 3s ease infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8)) drop-shadow(0 0 15px rgba(0, 212, 255, 0.6));
+            text-align: center;
         }
 
         .buy-btn {
-            flex: 1;
-            padding: 0.9rem;
-            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 25%, #00ff88 50%, #ffcc00 75%, #ff00ff 100%);
+            background-size: 300% 300%;
+            animation: buttonGradient 4s ease infinite;
             color: #fff;
             border: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4), 0 0 30px rgba(0, 102, 255, 0.2);
-            animation: gamerPulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.4);
             position: relative;
             overflow: hidden;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .buy-btn::before {
@@ -239,183 +304,180 @@
         }
 
         .buy-btn:hover {
-            transform: scale(1.08) skewX(-2deg);
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.6), 0 0 50px rgba(0, 102, 255, 0.4);
+            transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.9), 0 0 60px rgba(0, 212, 255, 0.8), 0 0 80px rgba(0, 255, 136, 0.6);
         }
 
+        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
-            width: 70px;
-            height: 70px;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: #fff;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             text-align: center;
-            font-size: 40px;
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.6);
-            z-index: 100;
+            font-size: 35px;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s;
-            animation: whatsappPulse 2s infinite;
+            transition: transform 0.3s;
+            animation: floatWhatsapp 3s ease-in-out infinite;
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 50px rgba(37, 211, 102, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7);
+        }
+
+        /* Web Promo */
+        .web-promo {
+            margin: 3rem auto;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, #0a2f7d 0%, #001a4d 100%);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .web-promo p {
+            color: #66e6ff;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .web-promo .company-name {
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0.3rem 0 1rem 0;
+        }
+
+        .web-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .web-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 10, 38, 0.95);
+            color: #00d4ff;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 2px solid #0066ff;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+
+        /* Animations */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes headerGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rainbowShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes priceRainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes buttonGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
         @keyframes glowText {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.6)) drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
             }
-            50% {
-                text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            50% { 
+                filter: drop-shadow(0 0 40px rgba(255, 0, 255, 1)) drop-shadow(0 0 40px rgba(0, 212, 255, 0.8));
             }
         }
 
         @keyframes floatText {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes titleShine {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.9;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
         @keyframes cardFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-3px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes titleShine {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+            50% { text-shadow: 0 0 40px rgba(0, 212, 255, 1); }
         }
 
         @keyframes priceGlow {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
-            }
-            50% {
-                text-shadow: 0 0 20px rgba(0, 212, 255, 1);
-            }
+            0%, 100% { text-shadow: 0 0 15px rgba(0, 212, 255, 0.8); }
+            50% { text-shadow: 0 0 30px rgba(0, 212, 255, 1); }
         }
 
-        @keyframes gamerPulse {
-            0%, 100% {
-                box-shadow: 0 0 15px rgba(0, 102, 255, 0.4), 0 0 30px rgba(0, 102, 255, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 25px rgba(0, 212, 255, 0.6), 0 0 50px rgba(0, 102, 255, 0.4);
-            }
+        @keyframes floatWhatsapp {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        @keyframes whatsappPulse {
-            0%, 100% {
-                box-shadow: 0 0 30px rgba(37, 211, 102, 0.6);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(37, 211, 102, 0.8);
-            }
-        }
-
-        footer {
-            background: #000a26;
-            color: #00d4ff;
-            text-align: center;
-            padding: 2rem;
-            border-top: 2px solid #0066ff;
-        }
-
-        .features-list {
-            background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%);
-            padding: 2rem;
-            border-radius: 10px;
-            border: 2px solid #0066ff;
-            margin: 2rem 0;
-            animation: featureShine 3s ease-in-out infinite;
-        }
-
-        .features-list h3 {
-            color: #00d4ff;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
-        }
-
-        .features-list ul {
-            list-style: none;
-        }
-
-        .features-list li {
-            padding: 0.5rem 0;
-            color: #66e6ff;
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li:before {
-            content: "⚡ ";
-            color: #0066ff;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        @keyframes featureShine {
-            0%, 100% {
-                border-color: #0066ff;
-            }
-            50% {
-                border-color: #00d4ff;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
+            .hero h1 { font-size: 1.5rem; }
+            .product-title { font-size: 1.8rem; }
+            .gallery { grid-template-columns: 1fr; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .gallery-item img { height: 220px; }
+        }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .whatsapp-float {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 30px;
-            }
-
-            .products, .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.3rem; }
+            .product-title { font-size: 1.5rem; }
+            .price { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -423,145 +485,344 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">⭐ DRIP CLIENT - ANDROID ⭐</div>
+            <span class="logo-text">⭐ ANDROID - VICLEYSHOP ⭐</span>
             <ul>
                 <li><a href="index.html">🏠 Inicio</a></li>
-                <li><a href="#galeria">Galería</a></li>
-                <li><a href="#productos">Planes</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto">📞 Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>🎮 DRIP CLIENT - APK MOD FREE FIRE 🎮</h1>
-            <p>Adquiere tus productos Drip Client y domina el Free Fire por completo</p>
+            <h1>🎮 PRODUCTOS ANDROID 🎮</h1>
+            <p>Selecciona tu producto favorito y domina el juego</p>
             <div class="payment-message">
                 ✅ Aceptamos TODO tipo de método de pago de cada país
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="container">
-        <div class="features-list">
-            <h3>⚡ CARACTERÍSTICAS PRINCIPALES:</h3>
-            <ul>
-                <li>Silent Kill / Silent Aim</li>
-                <li>Magnetic Aim (Apuntado Magnético)</li>
-                <li>Tatu / AntiTatu</li>
-                <li>Ghost Hack</li>
-                <li>ESP Name / Line / Box</li>
-                <li>Speed Hack</li>
-                <li>100% ANTIBLACKLIST</li>
-                <li>Soporte Android Completo</li>
-            </ul>
-        </div>
-    </section>
+    <!-- PRODUCTO 1: DRIP CLIENT APK MOD -->
+    <div class="container">
+        <div class="product-section" id="drip-client">
+            <div class="product-header">
+                <h2 class="product-title">🔥 DRIP CLIENT - APK MOD FREE FIRE 🔥</h2>
+                <p class="product-description">El mejor APK MOD para dominar Free Fire con todas las funciones premium</p>
+            </div>
 
-    <!-- Gallery Section -->
-    <section id="galeria">
-        <div class="container">
-            <h2 class="section-title">📸 GALERÍA</h2>
+            <!-- Galería Drip Client -->
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Client Resultados">
+                    <img src="drip-logo.jpg" alt="Drip Client Logo">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Client Banner">
                 </div>
                 <div class="gallery-item">
                     <img src="IMG-20260208-WA0027.jpg" alt="Drip Client Victorias">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Client APK MOD">
+                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Client Estadísticas">
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Products Section -->
-    <section id="productos">
-        <div class="container">
-            <h2 class="section-title">💎 PLANES Y PRECIOS</h2>
-            <div class="products">
-                <div class="product-card">
+            <!-- Planes Drip Client -->
+            <div class="plans-grid">
+                <div class="plan-card">
                     <h3>⚡ 1 DÍA</h3>
-                    <p>Adquiere tu producto por 24 horas y domina el juego. ¡Soporte 24/7 incluido!</p>
+                    <p>Prueba el poder de Drip Client por 24 horas</p>
                     <div class="price">$3.00 USD</div>
-                    <div class="button-group">
-                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 1 Día - $3.00 USD')">Comprar Ahora</button>
-                    </div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Client APK MOD - 1 Día - $3.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
                 </div>
 
-                <div class="product-card">
+                <div class="plan-card">
                     <h3>🌟 7 DÍAS</h3>
-                    <p>Una semana completa dominando el juego con acceso total. Soporte prioritario 24/7.</p>
+                    <p>Una semana completa dominando Free Fire</p>
                     <div class="price">$6.00 USD</div>
-                    <div class="button-group">
-                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 7 Días - $6.00 USD')">Comprar Ahora</button>
-                    </div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Client APK MOD - 7 Días - $6.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
                 </div>
 
-                <div class="product-card">
+                <div class="plan-card">
                     <h3>👑 15 DÍAS</h3>
-                    <p>Dos semanas de poder total. Domina completamente el juego con soporte continuo.</p>
+                    <p>Dos semanas de poder total en el juego</p>
                     <div class="price">$10.00 USD</div>
-                    <div class="button-group">
-                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 15 Días - $10.00 USD')">Comprar Ahora</button>
-                    </div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Client APK MOD - 15 Días - $10.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
                 </div>
 
-                <div class="product-card">
+                <div class="plan-card">
                     <h3>💜 30 DÍAS</h3>
-                    <p>Un mes completo de dominio total del juego. Acceso ilimitado + soporte 24/7 + bonus especiales.</p>
+                    <p>Un mes completo de dominio absoluto</p>
                     <div class="price">$20.00 USD</div>
-                    <div class="button-group">
-                        <button class="buy-btn" onclick="enviarWhatsapp('Plan 30 Días - $20.00 USD')">Comprar Ahora</button>
-                    </div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Client APK MOD - 30 Días - $20.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contacto" style="background: linear-gradient(135deg, #001a4d 0%, #0a2f7d 100%); text-align: center; border-top: 2px solid #0066ff;">
-        <div class="container">
-            <h2 class="section-title">📞 ¿PREGUNTAS?</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #00d4ff;">¡Contáctanos por WhatsApp y obtén soporte inmediato!</p>
-            <a href="https://wa.me/573227589092?text=Hola%20quiero%20más%20información%20sobre%20Drip%20Client" class="buy-btn" style="display: inline-block; width: auto; padding: 1rem 2rem;">
-                💬 ABRIR WHATSAPP
-            </a>
+    <!-- PRODUCTO 2: DRIP ROOT -->
+    <div class="container">
+        <div class="product-section" id="drip-root">
+            <div class="product-header">
+                <h2 class="product-title">🛡️ DRIP ROOT - FREE FIRE 🛡️</h2>
+                <p class="product-description">Versión ROOT con funciones avanzadas y mayor seguridad</p>
+                
+                <!-- Aviso de Root -->
+                <div class="root-warning">
+                    <p><span>⚠️</span> SOLO PARA TELÉFONOS ROOTEADOS <span>⚠️</span></p>
+                </div>
+            </div>
+
+            <!-- Galería Drip Root -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="drip-logo.jpg" alt="Drip Root Logo">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Root Banner">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260208-WA0027.jpg" alt="Drip Root Victorias">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Root Estadísticas">
+                </div>
+            </div>
+
+            <!-- Planes Drip Root -->
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>⚡ 1 DÍA</h3>
+                    <p>Acceso ROOT por 24 horas</p>
+                    <div class="price">$3.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Root - 1 Día - $3.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>🌟 7 DÍAS</h3>
+                    <p>Una semana de acceso ROOT completo</p>
+                    <div class="price">$6.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Root - 7 Días - $6.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>👑 15 DÍAS</h3>
+                    <p>Dos semanas con ventaja ROOT</p>
+                    <div class="price">$10.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Root - 15 Días - $10.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>💜 30 DÍAS</h3>
+                    <p>Un mes de poder ROOT total</p>
+                    <div class="price">$20.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip Root - 30 Días - $20.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Sección Alexis Creaciones -->
-    <section style="background: linear-gradient(135deg, #0a2f7d 0%, #001a4d 100%); text-align: center; padding: 0.8rem 0.5rem; border-top: 1px solid #0066ff;">
-        <div class="container">
-            <p style="font-size: 0.75rem; margin-bottom: 0.3rem; color: #00d4ff;">
-                💻 CREACION DE PÁGINAS WEB + SOPORTE 24/7
-            </p>
-            <p style="font-size: 0.7rem; margin-bottom: 0.5rem; color: #66e6ff; font-weight: bold;">
-                ALEXIS CREACIONES
-            </p>
-            <button onclick="contactarAlexis()" class="buy-btn" style="display: inline-block; width: auto; padding: 0.4rem 1rem; font-size: 0.7rem;">
-                💬 CONTACTAR POR WHATSAPP
+    <!-- PRODUCTO 3: STRIK BR -->
+    <div class="container">
+        <div class="product-section" id="strik-br">
+            <div class="product-header">
+                <h2 class="product-title">⚔️ STRIK BR - FREE FIRE ⚔️</h2>
+                <p class="product-description">Hack profesional con las mejores características del mercado</p>
+                
+                <!-- Aviso de Root -->
+                <div class="root-warning">
+                    <p><span>⚠️</span> SOLO PARA TELÉFONOS ROOTEADOS <span>⚠️</span></p>
+                </div>
+            </div>
+
+            <!-- Galería Strik BR -->
+            <div style="text-align: center; padding: 2rem; color: #66e6ff; font-size: 1.1rem;">
+                <p>📸 Imágenes próximamente</p>
+            </div>
+
+            <!-- Planes Strik BR -->
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>⚡ 1 DÍA</h3>
+                    <p>Prueba Strik BR por 24 horas</p>
+                    <div class="price">$3.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Strik BR - 1 Día - $3.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>🌟 7 DÍAS</h3>
+                    <p>Una semana de ventaja total</p>
+                    <div class="price">$6.50 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Strik BR - 7 Días - $6.50 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>👑 15 DÍAS</h3>
+                    <p>Dos semanas dominando con Strik BR</p>
+                    <div class="price">$11.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Strik BR - 15 Días - $11.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>💜 30 DÍAS</h3>
+                    <p>Un mes completo de supremacía</p>
+                    <div class="price">$22.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Strik BR - 30 Días - $22.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTO 4: DRIP 8 BALL POOL -->
+    <div class="container">
+        <div class="product-section" id="drip-8ball">
+            <div class="product-header">
+                <h2 class="product-title">🎱 DRIP 8 BALL POOL 🎱</h2>
+                <p class="product-description">Domina el billar con la mejor herramienta de apuntado y líneas guía</p>
+            </div>
+
+            <!-- Galería 8 Ball Pool -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="1000294527.jpg" alt="Drip 8 Ball Pool MOD 2026">
+                </div>
+                <div class="gallery-item">
+                    <img src="1000294526.jpg" alt="8 Ball Pool VIP 100%">
+                </div>
+            </div>
+
+            <!-- Planes Drip 8 Ball Pool -->
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>⚡ 1 DÍA</h3>
+                    <p>24 horas de líneas perfectas y victorias</p>
+                    <div class="price">$3.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip 8 Ball Pool - 1 Día - $3.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>🌟 7 DÍAS</h3>
+                    <p>Una semana dominando las mesas de billar</p>
+                    <div class="price">$10.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('Drip 8 Ball Pool - 7 Días - $10.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTO 5: HG CHEATS -->
+    <div class="container">
+        <div class="product-section" id="hg-cheats">
+            <div class="product-header">
+                <h2 class="product-title">💎 HG CHEATS - FREE FIRE 💎</h2>
+                <p class="product-description">Hack premium con las funciones más avanzadas y seguras del mercado</p>
+            </div>
+
+            <!-- Galería HG Cheats -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="1000294460.png" alt="HG Cheats Logo">
+                </div>
+                <div class="gallery-item">
+                    <img src="1000294525.jpg" alt="HG Cheats APK MOD V14.1">
+                </div>
+            </div>
+
+            <!-- Planes HG Cheats -->
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>⚡ 1 DÍA</h3>
+                    <p>Acceso premium por 24 horas</p>
+                    <div class="price">$3.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('HG Cheats - 1 Día - $3.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>🌟 7 DÍAS</h3>
+                    <p>Una semana de ventaja premium</p>
+                    <div class="price">$6.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('HG Cheats - 7 Días - $6.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>👑 15 DÍAS</h3>
+                    <p>Dos semanas de dominio total</p>
+                    <div class="price">$10.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('HG Cheats - 15 Días - $10.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <h3>💜 30 DÍAS</h3>
+                    <p>Un mes completo de supremacía HG</p>
+                    <div class="price">$20.00 USD</div>
+                    <button class="buy-btn" onclick="comprarProducto('HG Cheats - 30 Días - $20.00 USD')">
+                        💳 COMPRAR AHORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Promo -->
+    <div class="container">
+        <div class="web-promo">
+            <p>💻 Creación de páginas web profesionales</p>
+            <p class="company-name">ALEXIS CREACIONES</p>
+            <button onclick="contactarAlexis()" class="web-btn">
+                💬 CONTACTAR
             </button>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">WhatsApp: +57 322 7589092</p>
+    <footer id="contacto">
+        <p style="font-size: 1rem; font-weight: bold;">📞 ¿Preguntas? ¡Contáctanos!</p>
+        <p style="margin-top: 0.5rem;">WhatsApp: +57 322 7589092</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- WhatsApp Button -->
+    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/573227589092" class="whatsapp-float" title="Contactar por WhatsApp">
         💬
     </a>
 
     <script>
-        function enviarWhatsapp(producto) {
+        function comprarProducto(producto) {
             const numeroWhatsapp = '573227589092';
             const mensaje = `Hola, estoy interesado en comprar: ${producto}`;
             const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
@@ -575,6 +836,5 @@
             window.open(enlace, '_blank');
         }
     </script>
-
 </body>
 </html>
