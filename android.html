@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Android - VicleyShop</title>
+    <title>Productos Android - Modsljak</title>
     <style>
         * {
             margin: 0;
@@ -15,16 +15,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 20%, #0a2463 40%, #1e3a5f 60%, #2d1b69 80%, #1a0033 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 25%, #0a2463 50%, #1e3a5f 75%, #2d1b69 100%);
             padding-bottom: 100px;
         }
 
         header {
-            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 25%, #0066ff 50%, #9d00ff 75%, #ff00ff 100%);
-            background-size: 200% 200%;
-            animation: headerGradient 8s ease infinite;
+            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 50%, #0066ff 100%);
             color: #fff;
             padding: 1rem 0;
             position: sticky;
@@ -83,17 +79,15 @@
         .hero h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #00d4ff, #0066ff);
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glowText 2s ease-in-out infinite;
         }
 
         .hero p {
             font-size: 1rem;
             color: #00d4ff;
-            animation: floatText 3s ease-in-out infinite;
         }
 
         .payment-message {
@@ -106,7 +100,6 @@
             border-radius: 8px;
             border: 2px solid;
             border-image: linear-gradient(90deg, #ff00ff, #00d4ff, #00ff88) 1;
-            animation: pulse 2s ease-in-out infinite;
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
         }
 
@@ -123,10 +116,10 @@
             padding: 2.5rem 2rem;
             border-radius: 15px;
             border: 3px solid;
-            border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00, #ff00ff) 1;
-            animation: borderRotate 6s linear infinite;
-            box-shadow: 0 10px 40px rgba(255, 0, 255, 0.3), 0 10px 40px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 255, 136, 0.2);
+            border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00) 1;
+            box-shadow: 0 10px 40px rgba(255, 0, 255, 0.3), 0 10px 40px rgba(0, 212, 255, 0.3);
             max-width: 1200px;
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .product-header {
@@ -138,14 +131,12 @@
 
         .product-title {
             font-size: 2.2rem;
-            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00, #ff00ff);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.8rem;
-            animation: rainbowShine 4s ease infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 212, 255, 0.4));
+            filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.5));
         }
 
         .product-description {
@@ -191,12 +182,12 @@
             transition: transform 0.3s, box-shadow 0.3s;
             border: 3px solid;
             border-image: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88) 1;
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .gallery-item:hover {
-            transform: scale(1.08);
-            box-shadow: 0 15px 50px rgba(255, 0, 255, 0.7), 0 15px 50px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 255, 136, 0.5);
-            border-image: linear-gradient(135deg, #ffcc00, #ff00ff, #00d4ff) 1;
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 0, 255, 0.7), 0 15px 50px rgba(0, 212, 255, 0.6);
         }
 
         .gallery-item img {
@@ -224,15 +215,13 @@
             padding: 1.8rem 1.5rem;
             display: flex;
             flex-direction: column;
-            animation: cardFloat 3s ease-in-out infinite;
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .plan-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.7), 0 20px 60px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 255, 136, 0.4);
-            border-image: linear-gradient(135deg, #ffcc00, #ff00ff, #00d4ff) 1;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.7), 0 20px 60px rgba(0, 212, 255, 0.6);
             background: linear-gradient(135deg, rgba(45, 90, 157, 0.95) 0%, rgba(42, 90, 189, 0.95) 100%);
-            animation: none;
         }
 
         .plan-card h3 {
@@ -257,24 +246,20 @@
 
         .price {
             font-size: 2rem;
-            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88, #ffcc00);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #ff00ff, #00d4ff, #00ff88);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: bold;
             margin: 1rem 0;
-            animation: priceRainbow 3s ease infinite;
-            filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8)) drop-shadow(0 0 15px rgba(0, 212, 255, 0.6));
+            filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.6));
             text-align: center;
         }
 
         .buy-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 25%, #00ff88 50%, #ffcc00 75%, #ff00ff 100%);
-            background-size: 300% 300%;
-            animation: buttonGradient 4s ease infinite;
+            background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 50%, #00ff88 100%);
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -282,7 +267,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
             position: relative;
             overflow: hidden;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -327,7 +312,6 @@
             justify-content: center;
             text-decoration: none;
             transition: transform 0.3s;
-            animation: floatWhatsapp 3s ease-in-out infinite;
         }
 
         .whatsapp-float:hover {
@@ -344,6 +328,7 @@
             border-radius: 10px;
             max-width: 400px;
             text-align: center;
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .web-promo p {
@@ -391,78 +376,14 @@
         }
 
         /* Animations */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes headerGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes rainbowShine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes priceRainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes buttonGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes borderRotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        @keyframes glowText {
-            0%, 100% { 
-                filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.6)) drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+        /* Animations */
+        @keyframes borderGlow {
+            0%, 100% {
+                filter: brightness(1) hue-rotate(0deg);
             }
-            50% { 
-                filter: drop-shadow(0 0 40px rgba(255, 0, 255, 1)) drop-shadow(0 0 40px rgba(0, 212, 255, 0.8));
+            50% {
+                filter: brightness(1.2) hue-rotate(20deg);
             }
-        }
-
-        @keyframes floatText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes titleShine {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
-            50% { text-shadow: 0 0 40px rgba(0, 212, 255, 1); }
-        }
-
-        @keyframes priceGlow {
-            0%, 100% { text-shadow: 0 0 15px rgba(0, 212, 255, 0.8); }
-            50% { text-shadow: 0 0 30px rgba(0, 212, 255, 1); }
-        }
-
-        @keyframes floatWhatsapp {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         /* Responsive */
@@ -485,7 +406,7 @@
     <!-- Header -->
     <header>
         <nav>
-            <span class="logo-text">⭐ ANDROID - VICLEYSHOP ⭐</span>
+            <span class="logo-text">⭐ ANDROID - MODSLJAK ⭐</span>
             <ul>
                 <li><a href="index.html">🏠 Inicio</a></li>
                 <li><a href="#contacto">📞 Contacto</a></li>
@@ -513,20 +434,7 @@
             </div>
 
             <!-- Galería Drip Client -->
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="drip-logo.jpg" alt="Drip Client Logo">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Client Banner">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260208-WA0027.jpg" alt="Drip Client Victorias">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Client Estadísticas">
-                </div>
-            </div>
+
 
             <!-- Planes Drip Client -->
             <div class="plans-grid">
@@ -583,20 +491,7 @@
             </div>
 
             <!-- Galería Drip Root -->
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="drip-logo.jpg" alt="Drip Root Logo">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260206-WA0005.jpg" alt="Drip Root Banner">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260208-WA0027.jpg" alt="Drip Root Victorias">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20260208-WA0031.jpg" alt="Drip Root Estadísticas">
-                </div>
-            </div>
+
 
             <!-- Planes Drip Root -->
             <div class="plans-grid">
@@ -653,9 +548,7 @@
             </div>
 
             <!-- Galería Strik BR -->
-            <div style="text-align: center; padding: 2rem; color: #66e6ff; font-size: 1.1rem;">
-                <p>📸 Imágenes próximamente</p>
-            </div>
+
 
             <!-- Planes Strik BR -->
             <div class="plans-grid">
@@ -707,14 +600,7 @@
             </div>
 
             <!-- Galería 8 Ball Pool -->
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="1000294527.jpg" alt="Drip 8 Ball Pool MOD 2026">
-                </div>
-                <div class="gallery-item">
-                    <img src="1000294526.jpg" alt="8 Ball Pool VIP 100%">
-                </div>
-            </div>
+
 
             <!-- Planes Drip 8 Ball Pool -->
             <div class="plans-grid">
@@ -748,14 +634,7 @@
             </div>
 
             <!-- Galería HG Cheats -->
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="1000294460.png" alt="HG Cheats Logo">
-                </div>
-                <div class="gallery-item">
-                    <img src="1000294525.jpg" alt="HG Cheats APK MOD V14.1">
-                </div>
-            </div>
+
 
             <!-- Planes HG Cheats -->
             <div class="plans-grid">
@@ -813,7 +692,7 @@
     <footer id="contacto">
         <p style="font-size: 1rem; font-weight: bold;">📞 ¿Preguntas? ¡Contáctanos!</p>
         <p style="margin-top: 0.5rem;">WhatsApp: +57 322 7589092</p>
-        <p style="margin-top: 1rem; font-size: 0.85rem;">© 2026 VicleyShop + Marihuano exe. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">© 2026 Modsljak + Marihuano exe. Todos los derechos reservados.</p>
     </footer>
 
     <!-- WhatsApp Float Button -->
