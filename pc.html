@@ -27,6 +27,7 @@
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
+        }
 
         /* Logo Watermark */
         body::before {
@@ -101,6 +102,21 @@
             }
         }
 
+        @keyframes borderColorChange {
+            0% {
+                border-color: #bd00ff;
+            }
+            33% {
+                border-color: #39ff14;
+            }
+            66% {
+                border-color: #ffd500;
+            }
+            100% {
+                border-color: #bd00ff;
+            }
+        }
+
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
@@ -109,6 +125,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 10px 40px rgba(189, 0, 255, 0.3);
+            animation: borderColorChange 6s infinite;
         }
 
         nav {
@@ -204,6 +221,7 @@
             margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            animation: borderColorChange 6s infinite;
         }
 
         .hero h1 {
@@ -230,6 +248,7 @@
             display: inline-block;
             font-weight: 700;
             color: var(--neon-cyan);
+            animation: borderColorChange 6s infinite;
         }
 
         .container {
@@ -247,6 +266,7 @@
             border: 1px solid rgba(0, 245, 255, 0.3);
             position: relative;
             overflow: hidden;
+            animation: borderColorChange 6s infinite;
         }
 
         .product-section::before {
@@ -295,6 +315,7 @@
             border-radius: 15px;
             margin: 1.5rem 0;
             text-align: center;
+            animation: borderColorChange 6s infinite;
         }
 
         .promo-message p {
@@ -322,6 +343,7 @@
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
+            animation: borderColorChange 6s infinite;
         }
 
         .features-list h3 {
@@ -369,6 +391,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            animation: borderColorChange 6s infinite;
         }
 
         .plan-card::before {
@@ -475,6 +498,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: borderColorChange 6s infinite;
         }
 
         .promo-title {

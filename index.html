@@ -102,6 +102,21 @@
             }
         }
 
+        @keyframes borderColorChange {
+            0% {
+                border-color: #bd00ff;
+            }
+            33% {
+                border-color: #39ff14;
+            }
+            66% {
+                border-color: #ffd500;
+            }
+            100% {
+                border-color: #bd00ff;
+            }
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -111,6 +126,7 @@
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(189, 0, 255, 0.2);
+            animation: borderColorChange 6s infinite;
         }
 
         nav {
@@ -189,7 +205,7 @@
             border-radius: 50px;
             margin-bottom: 2rem;
             font-weight: 600;
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse 2s ease-in-out infinite, borderColorChange 6s infinite;
         }
 
         @keyframes pulse {
@@ -274,6 +290,7 @@
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s ease;
+            animation: borderColorChange 6s infinite;
         }
 
         .btn-secondary:hover {
@@ -303,6 +320,7 @@
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            animation: borderColorChange 6s infinite;
         }
 
         .stat-card:hover {
@@ -368,6 +386,7 @@
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: borderColorChange 6s infinite;
         }
 
         .product-card::before {
@@ -477,6 +496,7 @@
             padding: 2.5rem 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            animation: borderColorChange 6s infinite;
         }
 
         .feature-item:hover {
@@ -518,6 +538,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: borderColorChange 6s infinite;
         }
 
         .promo-card::before {
@@ -573,6 +594,35 @@
         .promo-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Dragón animado */
+        .dragon-emoji {
+            font-size: 2.5em;
+            display: inline-block;
+            animation: dragonPulse 2s ease-in-out infinite, dragonFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+            margin: 0 0.2em;
+        }
+
+        @keyframes dragonPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+            }
+            50% {
+                transform: scale(1.2);
+                filter: drop-shadow(0 0 20px rgba(255, 107, 0, 1));
+            }
+        }
+
+        @keyframes dragonFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Footer */
@@ -720,7 +770,7 @@
     <section class="products-section" id="productos">
         <div class="section-header">
             <h2 class="section-title">🚀 Ventas Chams: Potencia y Exclusividad 🚀</h2>
-            <p class="section-subtitle">¡Descubre el poder de los mods 🐲 con nuestros productos hacks de última generación 🔥!</p>
+            <p class="section-subtitle">¡Descubre el poder de los mods <span class="dragon-emoji">🐲</span> con nuestros productos hacks de última generación 🔥!</p>
         </div>
 
         <div class="products-grid">
