@@ -853,6 +853,11 @@
         createParticles();
 
         function comprarProducto(producto, duracion, precio) {
+            // 📊 Registrar click en Firebase (admin panel)
+            if (typeof window.registrarClickCompra === 'function') {
+                window.registrarClickCompra(producto, duracion, precio);
+            }
+            // 💬 Abrir WhatsApp
             const numeroWhatsapp = '573227589092';
             const mensaje = `Hola, quiero comprar:\n\nProducto: ${producto}\nDuración: ${duracion}\nPrecio: $${precio} USD\n\n¿Cómo procedo con el pago?`;
             const enlace = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
@@ -866,5 +871,8 @@
             window.open(enlace, '_blank');
         }
     </script>
+    <!-- 🔒 MODSLJAK Tracker: licencia + clicks -->
+    <script>var MODSLJAK_PROYECTO_ID = 'modsljak_android';</script>
+    <script src="tracker-modsljak.js"></script>
 </body>
 </html>
